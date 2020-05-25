@@ -1,0 +1,551 @@
+{
+	"info": {
+		"_postman_id": "88306f13-fded-4960-b703-c197179654f3",
+		"name": "mercadolivre",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "informacao_usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cb456387-3fcd-4697-9def-3db511599a9f",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"token_oficial\", jsonData.access_token);\r",
+							"pm.environment.set(\"refresh_token_oficial\", jsonData.refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/users/me?access_token=APP_USR-1552736755437274-052517-842ca3dd349d0f7077e1c53d5a671f72-219531112",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"users",
+						"me"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "APP_USR-1552736755437274-052517-842ca3dd349d0f7077e1c53d5a671f72-219531112"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listing_types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/sites/MLB/listing_types",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"sites",
+						"MLB",
+						"listing_types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "atributo_categoria",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/categories/:categoria_id/attributes#json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"categories",
+						":categoria_id",
+						"attributes"
+					],
+					"hash": "json",
+					"variable": [
+						{
+							"key": "categoria_id",
+							"value": "MLB1055"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todas_categorias",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/sites/:site_id/categories",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"sites",
+						":site_id",
+						"categories"
+					],
+					"variable": [
+						{
+							"key": "site_id",
+							"value": "MLB"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sugestao_categorias_por_nome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/sites/:SITE_ID/domain_discovery/search?q=relógio",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"sites",
+						":SITE_ID",
+						"domain_discovery",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "relógio"
+						}
+					],
+					"variable": [
+						{
+							"key": "SITE_ID",
+							"value": "MLB"
+						}
+					]
+				},
+				"description": "ao digitar o produto o mercadolivre sugere categorias para o mesmo"
+			},
+			"response": []
+		},
+		{
+			"name": "inserir_anuncio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category_id\": \"MLB1055\",\n    \"title\": \"iPhone s6\",\n    \"price\": 300,\n    \"currency_id\": \"BRL\",\n    \"available_quantity\": 10,\n    \"buying_mode\": \"buy_it_now\",\n    \"listing_type_id\": \"bronze\",\n    \"condition\": \"new\",\n    \"warranty\": \"Garantia de 30 dias\",\n    \"description\": \"Item de  Teste  Não ofertar\",\n    \"pictures\": [\n        {\n            \"source\": \"http://mlb-d2-p.mlstatic.com/iphone-6s-plus-apple-space-gray-64-gb-55-camera-12-801811-MLB20649196529_032016-F.jpg\"\n        }\n    ],\n    \"attributes\": [\n        {\n            \"id\": \"BRAND\",\n            \"value_id\": \"9344\",\n            \"value_name\": \"Apple\"\n        },\n        {\n            \"id\": \"RAM\",\n            \"value_id\": \"9344\",\n            \"value_name\": \"1 GB\"\n        },\n        {\n            \"id\": \"INTERNAL_MEMORY\",\n            \"value_id\": \"\",\n            \"value_name\": \"256 GB\"\n        },\n        {\n            \"id\": \"LINE\",\n            \"value_id\": \"58993\",\n            \"value_name\": \"iPhone\"\n        },\n        {\n            \"id\": \"MODEL\",\n            \"value_id\": \"312155\",\n            \"value_name\": \"iPhone 7\"\n        },\n        {\n            \"id\": \"COLOR\",\n            \"value_id\": \"52019\",\n            \"value_name\": \"Verde-escuro\"\n        },\n        {\n            \"id\": \"IS_DUAL_SIM\",\n            \"value_id\": \"242084\",\n            \"value_name\": \"Não\"\n        },\n       \n        {\n            \"id\": \"CARRIER\",\n            \"value_id\": \"298335\",\n            \"value_name\": \"Desbloqueado\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.mercadolibre.com/items?access_token=APP_USR-1552736755437274-052517-842ca3dd349d0f7077e1c53d5a671f72-219531112",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"items"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "APP_USR-1552736755437274-052517-842ca3dd349d0f7077e1c53d5a671f72-219531112"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "informacao_aplicacao",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/applications/:application_id?access_token=APP_USR-1552736755437274-052517-842ca3dd349d0f7077e1c53d5a671f72-219531112",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"applications",
+						":application_id"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "APP_USR-1552736755437274-052517-842ca3dd349d0f7077e1c53d5a671f72-219531112"
+						}
+					],
+					"variable": [
+						{
+							"key": "application_id",
+							"value": "1552736755437274"
+						}
+					]
+				},
+				"description": "Obtém dados sobre o aplicativo."
+			},
+			"response": []
+		},
+		{
+			"name": "available_listing_types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/users/:Cust_id/available_listing_types?category_id=MLB1055&access_token=APP_USR-1552736755437274-052517-842ca3dd349d0f7077e1c53d5a671f72-219531112",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"users",
+						":Cust_id",
+						"available_listing_types"
+					],
+					"query": [
+						{
+							"key": "category_id",
+							"value": "MLB1055"
+						},
+						{
+							"key": "access_token",
+							"value": "APP_USR-1552736755437274-052517-842ca3dd349d0f7077e1c53d5a671f72-219531112"
+						}
+					],
+					"variable": [
+						{
+							"key": "Cust_id",
+							"value": "219531112"
+						}
+					]
+				},
+				"description": "Listing types disponivéis por usuários e categorias."
+			},
+			"response": []
+		},
+		{
+			"name": "historico de notificacoes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/myfeeds?app_id=1552736755437274&access_token=APP_USR-1552736755437274-052517-842ca3dd349d0f7077e1c53d5a671f72-219531112",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"myfeeds"
+					],
+					"query": [
+						{
+							"key": "app_id",
+							"value": "1552736755437274"
+						},
+						{
+							"key": "access_token",
+							"value": "APP_USR-1552736755437274-052517-842ca3dd349d0f7077e1c53d5a671f72-219531112"
+						}
+					]
+				},
+				"description": "Histórico de notificações."
+			},
+			"response": []
+		},
+		{
+			"name": "category_predictor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/sites/:Site_id/category_predictor/predict?title=Ipod%20Touch%20Apple%2016gb%205%20Gera%C3%A7%C3%A3o",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"sites",
+						":Site_id",
+						"category_predictor",
+						"predict"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "Ipod%20Touch%20Apple%2016gb%205%20Gera%C3%A7%C3%A3o"
+						}
+					],
+					"variable": [
+						{
+							"key": "Site_id",
+							"value": "MLB"
+						}
+					]
+				},
+				"description": "Preditor de categorias. Devolve a categoria exata para enumerar um articulo baseado no título."
+			},
+			"response": []
+		},
+		{
+			"name": "lista de modedas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/currencies",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"currencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "paises",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/classified_locations/countries",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"classified_locations",
+						"countries"
+					]
+				},
+				"description": "Obtém informação de países."
+			},
+			"response": []
+		},
+		{
+			"name": "paises_especificacao",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/classified_locations/countries/BR",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"classified_locations",
+						"countries",
+						"BR"
+					]
+				},
+				"description": "Obtém informação de países by country_id."
+			},
+			"response": []
+		},
+		{
+			"name": "busca endereco por cep",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/countries/BR/zip_codes/29101400",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"countries",
+						"BR",
+						"zip_codes",
+						"29101400"
+					]
+				},
+				"description": "Recupera dados da localização por código postal."
+			},
+			"response": []
+		},
+		{
+			"name": "Tipos de envios ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/sites/:SITE_ID/shipping_methods",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"sites",
+						":SITE_ID",
+						"shipping_methods"
+					],
+					"variable": [
+						{
+							"key": "SITE_ID",
+							"value": "MLB"
+						}
+					]
+				},
+				"description": "Devolve os métodos disponíveis num país."
+			},
+			"response": []
+		},
+		{
+			"name": "calcular custo do frete",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/sites/MLB/shipping_options?zip_code_from=29101400&zip_code_to=29165240&dimensions=10x10x20,500",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"sites",
+						"MLB",
+						"shipping_options"
+					],
+					"query": [
+						{
+							"key": "zip_code_from",
+							"value": "29101400"
+						},
+						{
+							"key": "zip_code_to",
+							"value": "29165240"
+						},
+						{
+							"key": "dimensions",
+							"value": "10x10x20,500"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modos de envio e servico disp ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/users/:CUST_ID/shipping_preferences",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"users",
+						":CUST_ID",
+						"shipping_preferences"
+					],
+					"variable": [
+						{
+							"key": "CUST_ID",
+							"value": "219531112"
+						}
+					]
+				},
+				"description": "Devolve todos os modos de envio e serviços disponíveis para o usuário."
+			},
+			"response": []
+		},
+		{
+			"name": "busca produto por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.mercadolibre.com/items/:ITEM_ID",
+					"protocol": "https",
+					"host": [
+						"api",
+						"mercadolibre",
+						"com"
+					],
+					"path": [
+						"items",
+						":ITEM_ID"
+					],
+					"variable": [
+						{
+							"key": "ITEM_ID",
+							"value": "MLB1191972200"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
